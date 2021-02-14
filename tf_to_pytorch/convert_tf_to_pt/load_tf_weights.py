@@ -156,10 +156,13 @@ if __name__ == '__main__':
                         help='checkpoint file path')
     parser.add_argument('--output_file', type=str, default='pretrained_pytorch/efficientnet-b0.pth',
                         help='output PyTorch model file name')
+    parser.add_argument('--image_size', type=int, default=456)
+    parser.add_argument('--num_classes', type=int, default=1000)
+
     args = parser.parse_args()
 
     # Build model
-    model = EfficientNet.from_name(args.model_name)
+    model = EfficientNet.from_name(args.model_name, image_size=args.image_size, num_classes=args.num_classes)
 
     # Load and save temporary TensorFlow file due to TF nuances
     print(args.tf_checkpoint)
